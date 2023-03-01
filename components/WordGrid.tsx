@@ -2,13 +2,14 @@
 interface Props {
   word: string;
   guess: string;
+  isGuessed: boolean;
 }
 
-function WordGrid({ word, guess }: Props) {
+function WordGrid({ word, guess, isGuessed }: Props) {
   return (
     <div className="flex gap-2 4">
       {Array.from(Array(5).fill(0)).map((_, idx) => {
-        const bgColor = !guess[idx]
+        const bgColor = !isGuessed
           ? ""
           : word[idx] === guess[idx]
           ? "bg-green-400"
