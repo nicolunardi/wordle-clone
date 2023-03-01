@@ -42,7 +42,7 @@ export default function Home() {
             console.log("winner");
             setWord(words[Math.floor(Math.random() * words.length)]);
             setGuesses(0);
-            setAllGuesses(["", "", "", "", "", ""]);
+            newGuesses.forEach((_, idx) => (newGuesses[idx] = ""));
           }
         } else {
           // TODO
