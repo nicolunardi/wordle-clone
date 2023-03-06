@@ -12,7 +12,15 @@ const poppins = Poppins({
 });
 
 export default function Home() {
-  const { word, allGuesses, guesses, updateGuesses, usedLetters } = useGame();
+  const {
+    word,
+    allGuesses,
+    guesses,
+    updateGuesses,
+    usedLetters,
+    invalidWord,
+    toggleInvalidWord,
+  } = useGame();
 
   useEffect(() => {
     const handleKeyup = (e: KeyboardEvent) => {
@@ -33,6 +41,9 @@ export default function Home() {
             guess={guess}
             word={word}
             isGuessed={idx < guesses}
+            invalidWord={invalidWord}
+            current={guesses === idx}
+            toggleInvalidWord={toggleInvalidWord}
             key={idx}
           />
         ))}

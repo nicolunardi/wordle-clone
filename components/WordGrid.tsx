@@ -1,11 +1,35 @@
 "use client";
+
+import { useEffect, useState } from "react";
+
 interface Props {
   word: string;
   guess: string;
   isGuessed: boolean;
+  invalidWord: boolean;
+  current: boolean;
+  toggleInvalidWord: () => void;
 }
 
-function WordGrid({ word, guess, isGuessed }: Props) {
+function WordGrid({
+  word,
+  guess,
+  isGuessed,
+  invalidWord,
+  current,
+  toggleInvalidWord,
+}: Props) {
+  const [effect, setEffect] = useState<boolean>(false);
+
+  const handleEffect = () => {
+    setEffect(false);
+    toggleInvalidWord();
+  };
+
+  useEffect(() => {
+    setEffect(invalidWord);
+  }, [invalidWord]);
+
   return (
     <div className="flex gap-2 4">
       {Array.from(Array(5).fill(0)).map((_, idx) => {
@@ -16,10 +40,15 @@ function WordGrid({ word, guess, isGuessed }: Props) {
           : word.includes(guess[idx])
           ? "bg-yellow-300"
           : "bg-gray-500";
+
+        const borderColor = current ? "border border-gray-800" : "border";
         return (
           <div
-            className={`h-14 w-14 border rounded flex justify-center items-center ${bgColor} uppercase`}
+            className={`h-14 w-14 ${borderColor} rounded flex justify-center items-center ${bgColor} uppercase ${
+              current && effect && "animate-wiggle"
+            }`}
             key={idx}
+            onAnimationEnd={handleEffect}
           >
             {guess[idx]}
           </div>
