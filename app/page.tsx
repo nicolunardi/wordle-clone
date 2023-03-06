@@ -4,6 +4,7 @@ import WordGrid from "@/components/WordGrid";
 import { Poppins } from "next/font/google";
 import { useCallback, useEffect, useState } from "react";
 import words from "@/data/words";
+import useGame from "@/hooks/useGame";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -11,66 +12,20 @@ const poppins = Poppins({
 });
 
 export default function Home() {
-  const [word, setWord] = useState<string>("");
-  const [allGuesses, setAllGuesses] = useState<string[]>([
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-  ]);
-  const [guesses, setGuesses] = useState<number>(0);
+  const { word, allGuesses, guesses, updateGuesses } = useGame();
 
-  const verifyWord = useCallback((word: string) => {
-    return words.includes(word);
-  }, []);
-
-  const handleKeyup = useCallback(
-    (e: KeyboardEvent) => {
+  useEffect(() => {
+    const handleKeyup = (e: KeyboardEvent) => {
       const key = e.key;
-      const newGuesses = [...allGuesses];
-      console.log(key);
-
-      if (key === "Enter") {
-        if (
-          newGuesses[guesses].length === 5 &&
-          verifyWord(newGuesses[guesses])
-        ) {
-          setGuesses((c) => c + 1);
-          if (newGuesses[guesses] === word) {
-            console.log("winner");
-            setWord(words[Math.floor(Math.random() * words.length)]);
-            setGuesses(0);
-            newGuesses.forEach((_, idx) => (newGuesses[idx] = ""));
-          }
-        } else {
-          // TODO
-          // shake animation
-        }
-      } else if (key === "Backspace") {
-        newGuesses[guesses] = newGuesses[guesses].slice(0, -1);
-      } else if (newGuesses[guesses].length < 5 && key.match(/^[A-z]$/)) {
-        newGuesses[guesses] += key;
-      }
-
-      setAllGuesses(newGuesses);
-    },
-    [allGuesses, guesses, verifyWord, word]
-  );
-
-  useEffect(() => {
-    setWord(words[Math.floor(Math.random() * words.length)]);
-  }, []);
-
-  useEffect(() => {
+      updateGuesses(key);
+    };
     window.addEventListener("keyup", handleKeyup);
 
     return () => window.removeEventListener("keyup", handleKeyup);
-  }, [handleKeyup]);
+  }, [updateGuesses]);
 
   return (
-    <main className="p-5 flex-1 flex flex-col items-center">
+    <main className="p-5 flex-1 flex flex-col items-center gap-6">
       {/* grid */}
       <div className="flex flex-col gap-2">
         {allGuesses.map((guess, idx) => (
@@ -84,7 +39,7 @@ export default function Home() {
       </div>
       {/* keyboard */}
       <div className="w-full">
-        <Keyboard />
+        <Keyboard updateGuesses={updateGuesses} />
       </div>
     </main>
   );
