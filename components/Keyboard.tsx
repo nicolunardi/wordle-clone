@@ -1,8 +1,13 @@
+"use client";
+
+import { IUsedLetters } from "@/app/types";
 import { BackspaceIcon } from "@heroicons/react/24/outline";
 import { MouseEvent } from "react";
+import LetterButton from "./LetterButton";
 
 interface Props {
   updateGuesses: (key: string) => void;
+  usedLetters: IUsedLetters;
 }
 
 const letters = [
@@ -11,7 +16,7 @@ const letters = [
   ["z", "x", "c", "v", "b", "n", "m"],
 ];
 
-function Keyboard({ updateGuesses }: Props) {
+function Keyboard({ updateGuesses, usedLetters }: Props) {
   const handleClick = (e: MouseEvent) => {
     updateGuesses(e.currentTarget.getAttribute("data-key")!);
   };
@@ -21,27 +26,23 @@ function Keyboard({ updateGuesses }: Props) {
       <div className="flex gap-2">
         {/* top row */}
         {letters[0].map((letter, idx) => (
-          <button
-            onClick={(e) => handleClick(e)}
-            className="border rounded flex justify-center items-center w-12 h-14 bg-gray-300 uppercase"
+          <LetterButton
             key={idx}
-            data-key={letter}
-          >
-            {letter}
-          </button>
+            handleClick={handleClick}
+            letter={letter}
+            usedLetters={usedLetters}
+          />
         ))}
       </div>
       <div className="flex gap-2">
         {/* middle row */}
         {letters[1].map((letter, idx) => (
-          <button
-            onClick={(e) => handleClick(e)}
-            className="border rounded flex justify-center items-center w-12 h-14 bg-gray-300 uppercase"
+          <LetterButton
             key={idx}
-            data-key={letter}
-          >
-            {letter}
-          </button>
+            handleClick={handleClick}
+            letter={letter}
+            usedLetters={usedLetters}
+          />
         ))}
       </div>
       {/* bottom row */}
@@ -58,14 +59,12 @@ function Keyboard({ updateGuesses }: Props) {
         }
         {/* letters */}
         {letters[2].map((letter, idx) => (
-          <button
-            onClick={(e) => handleClick(e)}
-            className="border rounded flex justify-center items-center w-12 h-14 bg-gray-300 uppercase"
+          <LetterButton
             key={idx}
-            data-key={letter}
-          >
-            {letter}
-          </button>
+            handleClick={handleClick}
+            letter={letter}
+            usedLetters={usedLetters}
+          />
         ))}
         {/* backspace button */}
         {

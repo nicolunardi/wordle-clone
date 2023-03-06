@@ -12,7 +12,7 @@ const poppins = Poppins({
 });
 
 export default function Home() {
-  const { word, allGuesses, guesses, updateGuesses } = useGame();
+  const { word, allGuesses, guesses, updateGuesses, usedLetters } = useGame();
 
   useEffect(() => {
     const handleKeyup = (e: KeyboardEvent) => {
@@ -39,7 +39,7 @@ export default function Home() {
       </div>
       {/* keyboard */}
       <div className="w-full">
-        <Keyboard updateGuesses={updateGuesses} />
+        <Keyboard updateGuesses={updateGuesses} usedLetters={usedLetters} />
       </div>
     </main>
   );
