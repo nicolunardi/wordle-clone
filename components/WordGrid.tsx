@@ -8,7 +8,7 @@ interface Props {
   isGuessed: boolean;
   invalidWord: boolean;
   current: boolean;
-  toggleInvalidWord: () => void;
+  setInvalidWord: () => void;
 }
 
 function WordGrid({
@@ -17,13 +17,13 @@ function WordGrid({
   isGuessed,
   invalidWord,
   current,
-  toggleInvalidWord,
+  setInvalidWord,
 }: Props) {
   const [effect, setEffect] = useState<boolean>(false);
 
   const handleEffect = () => {
     setEffect(false);
-    toggleInvalidWord();
+    setInvalidWord();
   };
 
   useEffect(() => {

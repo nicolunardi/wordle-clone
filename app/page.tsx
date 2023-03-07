@@ -19,7 +19,7 @@ export default function Home() {
     updateGuesses,
     usedLetters,
     invalidWord,
-    toggleInvalidWord,
+    setInvalidWord,
   } = useGame();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function Home() {
             isGuessed={idx < guesses}
             invalidWord={invalidWord}
             current={guesses === idx}
-            toggleInvalidWord={toggleInvalidWord}
+            setInvalidWord={() => setInvalidWord(false)}
             key={idx}
           />
         ))}
