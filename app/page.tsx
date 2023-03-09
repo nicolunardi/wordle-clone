@@ -2,9 +2,9 @@
 import Keyboard from "@/components/Keyboard";
 import WordGrid from "@/components/WordGrid";
 import { Poppins } from "next/font/google";
-import { useCallback, useEffect, useState } from "react";
-import words from "@/data/words";
+import { useEffect, useState } from "react";
 import useGame from "@/hooks/useGame";
+import PlayOnModal from "@/components/PlayOnModal";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,7 +20,20 @@ export default function Home() {
     usedLetters,
     invalidWord,
     setInvalidWord,
+    isGameEnded,
+    resetGame,
+    hasLost,
+    currStreak,
+    bestStreak,
   } = useGame();
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>();
+
+  useEffect(() => {
+    if (isGameEnded) {
+      setIsModalOpen(true);
+    }
+  }, [isGameEnded]);
 
   useEffect(() => {
     const handleKeyup = (e: KeyboardEvent) => {
@@ -52,6 +65,17 @@ export default function Home() {
       <div className="w-full">
         <Keyboard updateGuesses={updateGuesses} usedLetters={usedLetters} />
       </div>
+      <p>Current streak: {currStreak}</p>
+      {isModalOpen && (
+        <PlayOnModal
+          resetGame={resetGame}
+          hasLost={hasLost}
+          word={word}
+          closeModal={() => setIsModalOpen(false)}
+          currStreak={currStreak}
+          bestStreak={bestStreak}
+        />
+      )}
     </main>
   );
 }

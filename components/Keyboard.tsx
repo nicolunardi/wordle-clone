@@ -1,6 +1,6 @@
 "use client";
 
-import { IUsedLetters } from "@/app/types";
+import { IUsedLetters } from "@/types";
 import { BackspaceIcon } from "@heroicons/react/24/outline";
 import { MouseEvent } from "react";
 import LetterButton from "./LetterButton";

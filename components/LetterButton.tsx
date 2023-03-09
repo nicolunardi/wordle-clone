@@ -1,4 +1,4 @@
-import { IUsedLetters } from "@/app/types";
+import { IUsedLetters } from "@/types";
 import { MouseEvent } from "react";
 
 interface Props {
