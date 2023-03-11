@@ -18,7 +18,7 @@ function LetterButton({ handleClick, letter, usedLetters }: Props) {
   return (
     <button
       onClick={(e) => handleClick(e)}
-      className={`border rounded flex justify-center items-center w-12 h-14 ${bgColor} hover:scale-110`}
+      className={`border rounded flex justify-center items-center w-8 h-10 uppercase text-sm ${bgColor} hover:scale-110 sm:w-12 sm:h-14 sm:text-lg`}
       data-key={letter}
     >
       {letter}

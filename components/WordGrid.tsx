@@ -41,7 +41,13 @@ function WordGrid({
           ? "bg-yellow-300"
           : "bg-gray-500";
 
-        const borderColor = current ? "border border-gray-800" : "border";
+        const borderColor =
+          current && guess[idx]
+            ? "border border-gray-800"
+            : guess[idx]
+            ? ""
+            : "border";
+
         return (
           <div
             className={`h-14 w-14 ${borderColor} rounded flex justify-center items-center ${bgColor} uppercase ${
@@ -54,7 +60,6 @@ function WordGrid({
           </div>
         );
       })}
-      <h1>{word}</h1>
     </div>
   );
 }

@@ -22,7 +22,7 @@ function Keyboard({ updateGuesses, usedLetters }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-2 items-center my-5">
+    <div className="flex flex-col gap-2 items-center my-5 ">
       <div className="flex gap-2">
         {/* top row */}
         {letters[0].map((letter, idx) => (
@@ -51,7 +51,7 @@ function Keyboard({ updateGuesses, usedLetters }: Props) {
         {
           <button
             onClick={(e) => handleClick(e)}
-            className="border rounded flex justify-center items-center h-14 w-16 bg-gray-300 uppercase text-sm"
+            className="border rounded flex justify-center items-center w-12 h-10 bg-gray-300 uppercase text-xs sm:text-sm sm:h-14 sm:w-16"
             data-key="Enter"
           >
             {"enter"}
@@ -70,7 +70,7 @@ function Keyboard({ updateGuesses, usedLetters }: Props) {
         {
           <button
             onClick={(e) => handleClick(e)}
-            className="border rounded flex justify-center items-center w-16 h-14 bg-gray-300 uppercase"
+            className="border rounded flex justify-center items-center w-12 h-10 bg-gray-300 uppercase sm:h-14 sm:w-16"
             data-key="Backspace"
           >
             {<BackspaceIcon className="w-6 h-6" />}

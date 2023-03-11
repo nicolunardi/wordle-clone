@@ -66,6 +66,7 @@ export default function Home() {
         <Keyboard updateGuesses={updateGuesses} usedLetters={usedLetters} />
       </div>
       <p>Current streak: {currStreak}</p>
+      <p>{word}</p>
       {isModalOpen && (
         <PlayOnModal
           resetGame={resetGame}
