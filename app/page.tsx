@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import useGame from "@/hooks/useGame";
 import PlayOnModal from "@/components/PlayOnModal";
+import HighscoreModal from "@/components/HighscoreModal";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,7 +28,9 @@ export default function Home() {
     bestStreak,
   } = useGame();
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isHighscoresModalOpen, setIsHighscoresModalOpen] =
+    useState<boolean>(false);
 
   useEffect(() => {
     if (isGameEnded) {
@@ -67,6 +70,7 @@ export default function Home() {
       </div>
       <p>Current streak: {currStreak}</p>
       <p>{word}</p>
+      <button onClick={() => setIsHighscoresModalOpen(true)}>Highscores</button>
       {isModalOpen && (
         <PlayOnModal
           resetGame={resetGame}
@@ -76,6 +80,9 @@ export default function Home() {
           currStreak={currStreak}
           bestStreak={bestStreak}
         />
+      )}
+      {isHighscoresModalOpen && (
+        <HighscoreModal closeModal={() => setIsHighscoresModalOpen(false)} />
       )}
     </main>
   );

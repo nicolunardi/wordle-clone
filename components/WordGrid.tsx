@@ -50,9 +50,9 @@ function WordGrid({
 
         return (
           <div
-            className={`h-14 w-14 ${borderColor} rounded flex justify-center items-center ${bgColor} uppercase ${
+            className={`h-14 w-14 ${borderColor} rounded flex justify-center items-center ${bgColor} uppercase  ${
               current && effect && "animate-wiggle"
-            }`}
+            } `}
             key={idx}
             onAnimationEnd={handleEffect}
           >
