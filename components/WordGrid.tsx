@@ -31,7 +31,7 @@ function WordGrid({
   }, [invalidWord]);
 
   return (
-    <div className="flex gap-2 4">
+    <div className="flex gap-2">
       {Array.from(Array(5).fill(0)).map((_, idx) => {
         const bgColor = !isGuessed
           ? ""

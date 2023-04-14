@@ -1,0 +1,24 @@
+{
+    "scores": [
+        {"name": "nico", "score": 5},
+        {"name": "jon", "score": 10},
+        {"name": "anna", "score": 4},
+        {"name": "liz", "score": 2},
+        {"name": "laura", "score": 3},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "rob", "score": 15},
+        {"name": "jack", "score": 51}
+    ]
+}
